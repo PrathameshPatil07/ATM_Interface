@@ -1,0 +1,73 @@
+import java.util.*;
+import java.util.Scanner;
+
+public class AtmInterface {
+    public static void main(String[] args) {
+        int balance = 60000, withdraw, deposite;
+        int i = 1;
+        Scanner sc = new Scanner(System.in);
+        int pinnumber = 1111;
+        System.out.println("please enter your ATM pin number :");
+        int pass = sc.nextInt();
+
+        if (pass != pinnumber) {
+            while (true) {
+                i++;
+                System.out.println("Wrong pin number!!");
+                System.out.println("Please re-enter your pin number (max.Attempts:- 3):");
+                pass = sc.nextInt();
+                if (pass == pinnumber) {
+                    break;
+                }
+                if (i == 3) {
+                    System.out.println("You are excceed your trials , please retry after sometime .");
+                    System.exit(0);
+                }
+            }
+        }
+        if (pass == pinnumber) {
+            System.out.println("--------WELCOME TO ATM SERVICE--------");
+            while (true) {
+                System.out.println("Enter 1 to check your account balance :");
+                System.out.println("Enter 2 to withdraw money :");
+                System.out.println("Enter 3 to deposite the money :");
+                System.out.println("Enter 4 to Quit");
+                System.out.println("Enter your choice : ");
+                int choice = sc.nextInt();
+                switch (choice) {
+                    case 1:
+                        System.out.println("Your account balance is :" + balance);
+                        System.out.println("");
+                        break;
+
+                    case 2:
+                        System.out.println("Enter amount you want to withdraw :");
+                        withdraw = sc.nextInt();
+                        if (withdraw > balance || withdraw == balance) {
+                            System.out.println("You have insufficient balance !!\n");
+                            break;
+                        }
+                        System.out.println("Hope you collected your account ");
+                        balance = balance - withdraw;
+                        System.out.praintln("");
+                        // System.out.println("Your balance is : " + balance);
+                        break;
+
+                    case 3:
+                        System.out.println("Enter money to be deposit :");
+                        deposite = sc.nextInt();
+                        balance = balance + deposite;
+                        System.out.println("YOur money is successfully deposited in your account ");
+                        // System.out.println("your balance is :" + balance);
+                        System.out.println("");
+                        break;
+
+                    case 4:
+                        System.out.println(" THANK FOR USING ATM MACHINE ");
+                        System.exit(0);
+                        ;
+                }
+            }
+        }
+    }
+}
